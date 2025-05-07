@@ -4,7 +4,7 @@ trigger:
 stages:
   - stage: 
     displayName: 
-    pool: adoppol
+    pool: adopool
     variables:
       build configuration: "Reease"
       build platform: "any cpu"
