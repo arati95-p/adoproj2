@@ -32,3 +32,21 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'drop'
               publishLocation: 'Container'
+  - stage: 
+    displayName: 
+    pool: adopool
+    jobs:
+      - deployment: 
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                
+              - task: AzureRmWebAppDeployment@5
+                inputs:
+                  ConnectionType: 'AzureRM'
+                  azureSubscription: 'serviceconnection05'
+                  appType: 'webApp'
+                  WebAppName: 'webapp05'
+                  packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
