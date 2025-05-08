@@ -4,7 +4,7 @@ trigger:
 stages:
   - stage: 
     displayName: 
-    pool: adopool
+    pool: adopool25
     variables:
       build configuration: "Reease"
       build platform: "any cpu"
@@ -34,7 +34,7 @@ stages:
               publishLocation: 'Container'
   - stage: 
     displayName: 
-    pool: adopool
+    pool: adopool25
     jobs:
       - deployment: 
         environment: dev
