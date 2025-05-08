@@ -46,7 +46,7 @@ stages:
               - task: AzureRmWebAppDeployment@5
                 inputs:
                   ConnectionType: 'AzureRM'
-                  azureSubscription: 'serviceconnection05'
+                  azureSubscription: 'serviccon25'
                   appType: 'webApp'
-                  WebAppName: 'webapp05'
+                  WebAppName: 'webapp25'
                   packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
