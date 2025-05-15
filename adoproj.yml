@@ -33,16 +33,32 @@ stages:
               ArtifactName: 'drop'
               publishLocation: 'Container'
 
-  # - stage: 
-  #   displayName: 
-  #   pool: adopool25
-  #   jobs:
-  #     - deployment: 
-  #       environment: dev
-  #       strategy:
-  #         runOnce:
-  #           deploy:
-  #             steps:
+  - stage: 
+    displayName: 
+    pool: adopool25
+    jobs:
+      - deployment: 
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: IISWebAppManagementOnMachineGroup@0
+                  inputs:
+                    IISDeploymentType: 'IISWebsite'
+                    ActionIISWebsite: 'CreateOrUpdateWebsite'
+                    WebsiteName: 'clientwebapp'
+                    WebsitePhysicalPath: 'D:\clientartifacts'
+                    WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+                    CreateOrUpdateAppPoolForWebsite: true
+                    AppPoolNameForWebsite: 'clientappplan'
+                    DotNetVersionForWebsite: 'v4.0'
+                    PipeLineModeForWebsite: 'Integrated'
+                    AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
+                - task: IISWebAppDeploymentOnMachineGroup@0
+                  inputs:
+                    WebSiteName: 'clientwebapp'
+                    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
                 
   #             - task: AzureRmWebAppDeployment@5
   #               inputs:
