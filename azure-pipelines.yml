@@ -2,15 +2,15 @@ trigger:
 - main
 
 stages:
-  - stage:  build ci
+  - stage:  'build_ci'
     displayName: CI
-    pool:
+    pool: vmpool
     variables:
       build configuration: "Release"
       build platform: "any cpu"
 
     jobs:
-      - job: build_job
+      - job: 'build_job'
         displayName: build job
         steps:
               
