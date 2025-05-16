@@ -35,3 +35,31 @@ stages:
             ArtifactName: 'drop'
             publishLocation: 'Container'
             
+  - stage: 
+    displayName: cdpipeline
+    variables:
+    pool: vmpool
+    jobs:
+      - Deployment:
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: IISWebAppManagementOnMachineGroup@0
+                  inputs:
+                    IISDeploymentType: 'IISWebsite'
+                    ActionIISWebsite: 'CreateOrUpdateWebsite'
+                    WebsiteName: 'clientwebapp'
+                    WebsitePhysicalPath: 'C:\azagent'
+                    WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+                    CreateOrUpdateAppPoolForWebsite: true
+                    AppPoolNameForWebsite: 'clientappplan'
+                    DotNetVersionForWebsite: 'v4.0'
+                    PipeLineModeForWebsite: 'Integrated'
+                    AppPoolIdentityForWebsite: 'ApplicationPoolIdentity'
+                - task: IISWebAppDeploymentOnMachineGroup@0
+                  inputs:
+                    WebSiteName: 'clientwebapp'
+                    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
+            
