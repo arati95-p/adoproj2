@@ -37,10 +37,9 @@ stages:
             
   - stage: 
     displayName: cdpipeline
-    variables:
     pool: vmpool
     jobs:
-      - Deployment:
+      - deployment:
         environment: dev
         strategy:
           runOnce:
