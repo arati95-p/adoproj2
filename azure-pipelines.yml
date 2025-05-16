@@ -53,7 +53,7 @@ stages:
                     IISDeploymentType: 'IISWebsite'
                     ActionIISWebsite: 'CreateOrUpdateWebsite'
                     WebsiteName: 'clientwebapp'
-                    WebsitePhysicalPath: 'C:\azagent'
+                    WebsitePhysicalPath: 'D:\webapp'
                     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
                     CreateOrUpdateAppPoolForWebsite: true
                     AppPoolNameForWebsite: 'clientappplan'
